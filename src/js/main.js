@@ -20,7 +20,7 @@ const getFramePath = (index) => {
 
 /**
  * Inicializa el canvas de fondo fijo y vincula el progreso del scroll de toda la web
- * para recorrer fotograma a fotograma la secuencia desde el inicio al final de la página.
+ * para recorrer fotograma a fotograma la secuencia desde la primera a la última sección.
  */
 const initFullPageSequenceController = () => {
   const canvas = document.getElementById('bg-canvas');
@@ -31,7 +31,7 @@ const initFullPageSequenceController = () => {
   let currentFrameIndex = 0;
 
   /**
-   * Pre-carga los 80 fotogramas en memoria.
+   * Pre-carga los 80 fotogramas en memoria para dibujado instantáneo a 60 fps.
    */
   const preloadImages = () => {
     for (let i = 0; i < FRAME_COUNT; i++) {
@@ -94,9 +94,7 @@ const initFullPageSequenceController = () => {
   let ticking = false;
   const updateSequenceOnScroll = () => {
     const scrollTop = window.scrollY || window.pageYOffset;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (maxScroll <= 0) return;
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
 
     const progress = Math.max(0, Math.min(1, scrollTop / maxScroll));
     const targetIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
