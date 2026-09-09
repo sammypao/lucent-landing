@@ -12,35 +12,29 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700&amp;display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@1,400&amp;display=swap">
   
-  <script type="module" crossorigin src="/assets/index-DvKK4scH.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DSaZH_wJ.css">
+  <script type="module" crossorigin src="/assets/index-DcV-6RWk.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-qY3c-9Y0.css">
 </head>
 <body>
-  <!-- 1. HERO SECTION CON TRACK DE SCROLL DEDICADO -->
-  <div class="hero-scroll-track" id="hero-track">
-    <header class="hero-section" id="hero" aria-label="Hero Lucent Eyewear">
-      <!-- Contenedor del Canvas para Secuencia de Imágenes controlada por Scroll -->
-      <div class="hero-bg-container">
-        <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
-        <img
-          id="hero-bg-image"
-          class="hero-bg-image"
-          src="/media/sequence/frame_000.jpg"
-          alt="Lucent Frame 1"
-        >
-      </div>
+  <!-- Canvas Fijo de Fondo para la Secuencia Completa a lo largo de toda la Web -->
+  <canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
 
-      <!-- Navegación superior -->
-      <div class="hero-header-bar">
-        <a href="#hero" class="section-brand">LUCENT</a>
-        <nav class="section-nav hero-nav" aria-label="Navegación principal">
-          <a href="#lentes-adaptables" class="nav-link">Lentes</a>
-          <a href="#graduacion-personal" class="nav-link">Tecnología</a>
-          <a href="#graduacion-personal" class="nav-link">Reservar</a>
-        </nav>
-      </div>
+  <!-- Header / Navegación fija superior -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#hero" class="section-brand">LUCENT</a>
+      <nav class="section-nav site-nav" aria-label="Navegación principal">
+        <a href="#lentes-adaptables" class="nav-link">Lentes</a>
+        <a href="#montura-arquitectonica" class="nav-link">Montura</a>
+        <a href="#tecnologia-fotica" class="nav-link">Tecnología</a>
+        <a href="#graduacion-personal" class="nav-link">Reservar</a>
+      </nav>
+    </div>
+  </header>
 
-      <!-- Bloque de texto principal con degradado exclusivo detrás -->
+  <main>
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" id="hero" aria-label="Hero Lucent Eyewear">
       <div class="hero-content-wrapper reveal">
         <div class="hero-text-backdrop"></div>
         <div class="hero-text-block">
@@ -62,16 +56,14 @@
         <span class="hero-divider-dot" aria-hidden="true">/</span>
         <span class="hero-subtag">ÓPTICA CONCEPTUAL</span>
       </div>
-    </header>
-  </div>
+    </section>
 
-  <main>
     <!-- 2. 01 / LENTES ADAPTABLES -->
-    <section class="section-editorial" id="lentes-adaptables" aria-labelledby="editorial-heading">
+    <section class="section-editorial" id="lentes-adaptables" aria-labelledby="editorial-heading-1">
       <div class="site-container">
         <header class="editorial-header reveal">
           <span class="section-copy label-tag">01 / LENTES ADAPTABLES</span>
-          <h2 id="editorial-heading" class="section-title editorial-title">
+          <h2 id="editorial-heading-1" class="section-title editorial-title">
             Una mirada que<br>vuelve a ser <em>tuya</em>.
           </h2>
           <p class="section-copy editorial-intro">
@@ -81,28 +73,16 @@
 
         <!-- Geometría Distintiva: 2 Columnas 1fr / 1.25fr -->
         <div class="editorial-geometry reveal">
-          <!-- Columna Izquierda: Silueta de montura/lente dibujada con bordes de 1px -->
           <div class="cabin-silhouette-container" aria-label="Esquema de la montura y lente Lucent">
             <svg class="cabin-svg" viewBox="0 0 540 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silueta arquitectónica de lente Lucent">
-              <!-- Marco exterior envolvente -->
               <rect x="20" y="40" width="500" height="280" rx="6" stroke="#171815" stroke-width="1" />
-
-              <!-- Silueta de la montura doble cristal de lentes -->
-              <!-- Lente izquierda -->
               <rect x="70" y="110" width="170" height="130" rx="24" stroke="#171815" stroke-width="1" />
-              <!-- Lente derecha -->
               <rect x="300" y="110" width="170" height="130" rx="24" stroke="#171815" stroke-width="1" />
-              <!-- Puente central -->
               <path d="M 240 145 C 255 138, 285 138, 300 145" stroke="#171815" stroke-width="1" />
-              <!-- Varillas laterales -->
               <line x1="30" y1="135" x2="70" y2="135" stroke="#171815" stroke-width="1" />
               <line x1="470" y1="135" x2="510" y2="135" stroke="#171815" stroke-width="1" />
-
-              <!-- Líneas de cota fótica y capas réflex -->
               <line x1="90" y1="130" x2="220" y2="220" stroke="#171815" stroke-width="1" stroke-dasharray="3 3" />
               <line x1="320" y1="130" x2="450" y2="220" stroke="#171815" stroke-width="1" stroke-dasharray="3 3" />
-
-              <!-- Cota superior de precisión óptica -->
               <line x1="20" y1="20" x2="520" y2="20" stroke="#171815" stroke-width="1" stroke-opacity="0.3" />
               <line x1="20" y1="16" x2="20" y2="24" stroke="#171815" stroke-width="1" />
               <line x1="520" y1="16" x2="520" y2="24" stroke="#171815" stroke-width="1" />
@@ -110,9 +90,7 @@
             </svg>
           </div>
 
-          <!-- Columna Derecha: Tres filas abiertas (42px index + 1fr/1fr) -->
           <div class="editorial-rows-wrapper">
-            <!-- Fila 1 -->
             <div class="editorial-row">
               <div class="row-num section-copy">01</div>
               <div class="row-content">
@@ -120,8 +98,6 @@
                 <div class="row-desc section-copy">Ajuste fotocromático activo en milisegundos</div>
               </div>
             </div>
-
-            <!-- Fila 2 -->
             <div class="editorial-row">
               <div class="row-num section-copy">02</div>
               <div class="row-content">
@@ -129,8 +105,6 @@
                 <div class="row-desc section-copy">Protección fótica de alta definición</div>
               </div>
             </div>
-
-            <!-- Fila 3 -->
             <div class="editorial-row">
               <div class="row-num section-copy">03</div>
               <div class="row-content">
@@ -143,19 +117,127 @@
       </div>
     </section>
 
-    <!-- 3. 02 / GRADUACIÓN PERSONAL -->
+    <!-- 3. 02 / MONTURA ARQUITECTÓNICA -->
+    <section class="section-editorial" id="montura-arquitectonica" aria-labelledby="editorial-heading-2">
+      <div class="site-container">
+        <header class="editorial-header reveal">
+          <span class="section-copy label-tag">02 / MONTURA ARQUITECTÓNICA</span>
+          <h2 id="editorial-heading-2" class="section-title editorial-title">
+            La estructura del<br><em>aire</em>.
+          </h2>
+          <p class="section-copy editorial-intro">
+            Esculpidas en titanio grado quirúrgico, las monturas Lucent eliminan cualquier peso innecesario para fundirse con la anatomía facial.
+          </p>
+        </header>
+
+        <div class="editorial-geometry reveal">
+          <div class="cabin-silhouette-container" aria-label="Esquema de arquitectura de montura">
+            <svg class="cabin-svg" viewBox="0 0 540 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Geometría de titanio Lucent">
+              <rect x="20" y="40" width="500" height="280" rx="6" stroke="#171815" stroke-width="1" />
+              <!-- Diagrama de resistencia y varilla de titanio -->
+              <path d="M 60 180 Q 180 80, 270 180 T 480 180" stroke="#171815" stroke-width="1" fill="none" />
+              <circle cx="270" cy="180" r="60" stroke="#171815" stroke-width="1" stroke-dasharray="4 4" />
+              <circle cx="270" cy="180" r="4" fill="#171815" />
+              <line x1="210" y1="180" x2="330" y2="180" stroke="#171815" stroke-width="1" />
+              <line x1="270" y1="120" x2="270" y2="240" stroke="#171815" stroke-width="1" />
+              <text x="270" y="275" text-anchor="middle" fill="#171815" font-family="Instrument Sans" font-size="10" letter-spacing="1">TITANIUM FRAME / 14 GRAMS</text>
+            </svg>
+          </div>
+
+          <div class="editorial-rows-wrapper">
+            <div class="editorial-row">
+              <div class="row-num section-copy">01</div>
+              <div class="row-content">
+                <div class="row-title section-title">Material</div>
+                <div class="row-desc section-copy">Aleación de titanio ultraligero de 14 gramos</div>
+              </div>
+            </div>
+            <div class="editorial-row">
+              <div class="row-num section-copy">02</div>
+              <div class="row-content">
+                <div class="row-title section-title">Bisagra</div>
+                <div class="row-desc section-copy">Mecanismo de fricción magnética sin tornillos</div>
+              </div>
+            </div>
+            <div class="editorial-row">
+              <div class="row-num section-copy">03</div>
+              <div class="row-content">
+                <div class="row-title section-title">Ergonomía</div>
+                <div class="row-desc section-copy">Puntos de apoyo anatómicos con memoria de forma</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 03 / TECNOLOGÍA FÓTICA -->
+    <section class="section-editorial" id="tecnologia-fotica" aria-labelledby="editorial-heading-3">
+      <div class="site-container">
+        <header class="editorial-header reveal">
+          <span class="section-copy label-tag">03 / TECNOLOGÍA FÓTICA</span>
+          <h2 id="editorial-heading-3" class="section-title editorial-title">
+            Inteligencia en<br>cada <em>cristal</em>.
+          </h2>
+          <p class="section-copy editorial-intro">
+            Matriz fótica multicapa con micro-sensores ambientales que ajustan la polarización y la transmisión de luz en tiempo real.
+          </p>
+        </header>
+
+        <div class="editorial-geometry reveal">
+          <div class="cabin-silhouette-container" aria-label="Esquema de cristal fótico">
+            <svg class="cabin-svg" viewBox="0 0 540 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capas fóticas Lucent">
+              <rect x="20" y="40" width="500" height="280" rx="6" stroke="#171815" stroke-width="1" />
+              <!-- Capas fóticas paralelas -->
+              <line x1="80" y1="100" x2="460" y2="100" stroke="#171815" stroke-width="1" />
+              <line x1="80" y1="140" x2="460" y2="140" stroke="#171815" stroke-width="1" stroke-dasharray="2 2" />
+              <line x1="80" y1="180" x2="460" y2="180" stroke="#171815" stroke-width="1" />
+              <line x1="80" y1="220" x2="460" y2="220" stroke="#171815" stroke-width="1" stroke-dasharray="2 2" />
+              <line x1="80" y1="260" x2="460" y2="260" stroke="#171815" stroke-width="1" />
+              <text x="270" y="295" text-anchor="middle" fill="#171815" font-family="Instrument Sans" font-size="10" letter-spacing="1">PHOTIC MATRIX / 120 FPS SENSING</text>
+            </svg>
+          </div>
+
+          <div class="editorial-rows-wrapper">
+            <div class="editorial-row">
+              <div class="row-num section-copy">01</div>
+              <div class="row-content">
+                <div class="row-title section-title">Sensores</div>
+                <div class="row-desc section-copy">Medición de lux ambiental a 120 lecturas por segundo</div>
+              </div>
+            </div>
+            <div class="editorial-row">
+              <div class="row-num section-copy">02</div>
+              <div class="row-content">
+                <div class="row-title section-title">Transición</div>
+                <div class="row-desc section-copy">Graduación de tinte en menos de 0.2 segundos</div>
+              </div>
+            </div>
+            <div class="editorial-row">
+              <div class="row-num section-copy">03</div>
+              <div class="row-content">
+                <div class="row-title section-title">Conexión</div>
+                <div class="row-desc section-copy">Sincronización discreta con tus dispositivos personales</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 04 / GRADUACIÓN PERSONAL (CIERRE CON MISMO FONDO LUMINOSO) -->
     <section class="section-closing" id="graduacion-personal" aria-labelledby="closing-heading">
-      <!-- Círculos concéntricos finos saliendo del borde derecho -->
+      <!-- Círculos concéntricos finos de 1px -->
       <div class="concentric-circles-container" aria-hidden="true">
         <svg viewBox="0 0 600 600" class="concentric-circles-svg" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="600" cy="300" r="140" stroke="#f4f0e7" stroke-width="1" fill="none" opacity="0.35" />
-          <circle cx="600" cy="300" r="280" stroke="#f4f0e7" stroke-width="1" fill="none" opacity="0.25" />
-          <circle cx="600" cy="300" r="440" stroke="#f4f0e7" stroke-width="1" fill="none" opacity="0.15" />
+          <circle cx="600" cy="300" r="140" stroke="#171815" stroke-width="1" fill="none" opacity="0.35" />
+          <circle cx="600" cy="300" r="280" stroke="#171815" stroke-width="1" fill="none" opacity="0.25" />
+          <circle cx="600" cy="300" r="440" stroke="#171815" stroke-width="1" fill="none" opacity="0.15" />
         </svg>
       </div>
 
       <div class="closing-content site-container reveal">
-        <span class="section-copy label-tag dark-mode">02 / GRADUACIÓN PERSONAL</span>
+        <span class="section-copy label-tag">04 / GRADUACIÓN PERSONAL</span>
         <h2 id="closing-heading" class="section-title closing-title">
           Tu próxima mirada<br>empieza <em>antes</em>.
         </h2>
@@ -163,7 +245,7 @@
           Define el ambiente luminoso. Nosotros nos ocupamos de tus ojos.
         </p>
         <div class="closing-actions">
-          <a href="#hero" class="btn btn-secondary">Reservar LUCENT 01</a>
+          <a href="#hero" class="btn btn-primary">Reservar LUCENT 01</a>
         </div>
       </div>
     </section>

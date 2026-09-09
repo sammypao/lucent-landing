@@ -1,15 +1,15 @@
 /**
  * @file main.js
- * @description Controlador principal para la secuencia de imágenes por scroll y animaciones para LUCENT.
+ * @description Controlador principal para la secuencia de imágenes continua a lo largo de toda la página.
  */
 
 /**
- * Total de frames extraídos de la secuencia.
+ * Total de fotogramas de la secuencia.
  */
 const FRAME_COUNT = 80;
 
 /**
- * Genera la ruta de cada fotograma.
+ * Devuelve la ruta de cada fotograma numerado.
  * @param {number} index - Índice del fotograma (0 a 79).
  * @returns {string} Ruta absoluta del fotograma.
  */
@@ -19,19 +19,19 @@ const getFramePath = (index) => {
 };
 
 /**
- * Controlador de la secuencia de imágenes vinculada al desplazamiento (scroll scrubbing).
+ * Inicializa el canvas de fondo fijo y vincula el progreso del scroll de toda la web
+ * para recorrer fotograma a fotograma la secuencia desde el inicio al final de la página.
  */
-const initScrollSequenceController = () => {
-  const canvas = document.getElementById('hero-canvas');
-  const heroTrack = document.getElementById('hero-track');
-  if (!canvas || !heroTrack) return;
+const initFullPageSequenceController = () => {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
   const images = [];
   let currentFrameIndex = 0;
 
   /**
-   * Pre-carga todos los fotogramas en memoria.
+   * Pre-carga los 80 fotogramas en memoria.
    */
   const preloadImages = () => {
     for (let i = 0; i < FRAME_COUNT; i++) {
@@ -45,7 +45,7 @@ const initScrollSequenceController = () => {
   };
 
   /**
-   * Ajusta las dimensiones del canvas al tamaño del contenedor adaptando la relación de aspecto 'cover'.
+   * Ajusta las dimensiones del canvas al tamaño del viewport con renderizado 'cover'.
    */
   const resizeCanvas = () => {
     const dpr = window.devicePixelRatio || 1;
@@ -55,8 +55,8 @@ const initScrollSequenceController = () => {
   };
 
   /**
-   * Dibuja un fotograma específico en el canvas emulando 'object-fit: cover'.
-   * @param {number} index - Índice del fotograma a dibujar.
+   * Dibuja un fotograma en el canvas emulando 'object-fit: cover'.
+   * @param {number} index - Índice del fotograma.
    */
   const drawFrame = (index) => {
     const img = images[index];
@@ -89,18 +89,16 @@ const initScrollSequenceController = () => {
   };
 
   /**
-   * Calcula el fotograma según la posición de scroll y actualiza el canvas.
+   * Calcula el avance del fotograma según la posición de scroll en toda la web.
    */
   let ticking = false;
   const updateSequenceOnScroll = () => {
-    const rect = heroTrack.getBoundingClientRect();
-    const scrollableDistance = heroTrack.offsetHeight - window.innerHeight;
-    
-    if (scrollableDistance <= 0) return;
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-    // Calcular progreso de scroll de 0 a 1 dentro del hero track
-    const scrolled = -rect.top;
-    const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+    if (maxScroll <= 0) return;
+
+    const progress = Math.max(0, Math.min(1, scrollTop / maxScroll));
     const targetIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
 
     if (targetIndex !== currentFrameIndex) {
@@ -126,6 +124,7 @@ const initScrollSequenceController = () => {
   // Inicialización
   preloadImages();
   resizeCanvas();
+  updateSequenceOnScroll();
 };
 
 /**
@@ -160,6 +159,6 @@ const initScrollRevealController = () => {
  * Manejador principal al cargar el DOM.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  initScrollSequenceController();
+  initFullPageSequenceController();
   initScrollRevealController();
 });
