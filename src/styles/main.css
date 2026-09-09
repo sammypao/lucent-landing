@@ -663,28 +663,38 @@ h2.section-title {
 }
 
 /* ==========================================================================
-   5. SECCIÓN DE FUSIÓN FINAL
+   5. SECCIÓN DE FUSIÓN FINAL / FOOTER NEGRO DE LA WEB
    ========================================================================== */
 .section-fusion-closing {
   position: relative;
   width: 100%;
-  padding: 160px 0 100px 0;
-  background: transparent;
-  color: var(--color-ink);
-  z-index: 10;
+  padding: 140px 0 80px 0;
+  background-color: #171815 !important;
+  color: #f4f0e7 !important;
+  z-index: 20;
 }
 
 .fusion-content {
   max-width: 680px;
 }
 
+.section-fusion-closing .label-tag {
+  color: var(--color-accent) !important;
+}
+
 .fusion-title {
-  color: var(--color-ink);
+  color: #f4f0e7 !important;
   margin-bottom: 24px;
 }
 
+.fusion-title em {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  color: #ffffff !important;
+}
+
 .fusion-copy {
-  color: var(--color-ink-muted);
+  color: rgba(244, 240, 231, 0.75) !important;
   margin-bottom: 40px;
   max-width: 520px;
 }
@@ -692,10 +702,22 @@ h2.section-title {
 .fusion-footer-links {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   font-size: 12px;
   letter-spacing: 2.5px;
-  color: var(--color-ink-muted);
+  color: rgba(244, 240, 231, 0.6) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 32px;
+}
+
+.fusion-footer-links a {
+  color: rgba(244, 240, 231, 0.85);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.fusion-footer-links a:hover {
+  color: var(--color-accent);
 }
 
 /* ==========================================================================
