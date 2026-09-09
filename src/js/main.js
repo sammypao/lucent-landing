@@ -24,7 +24,7 @@ const initVideoPlaybackController = () => {
   heroVideo.pause();
   heroVideo.classList.remove('is-playing');
 
-  // Transcurridos 1.8 segundos mostrando la imagen estática, iniciar suavemente la reproducción del vídeo
+  // Transcurridos 3.8 segundos mostrando la imagen estática, iniciar la transición suave hacia el vídeo
   setTimeout(() => {
     const playPromise = heroVideo.play();
     if (playPromise !== undefined) {
@@ -34,7 +34,7 @@ const initVideoPlaybackController = () => {
         // En caso de bloqueo por el navegador, la imagen estática permanece visible sin fallos
       });
     }
-  }, 1800);
+  }, 3800);
 
   // Observador de visibilidad en el viewport
   const videoObserver = new IntersectionObserver((entries) => {
