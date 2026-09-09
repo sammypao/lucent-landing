@@ -146,13 +146,13 @@ h2.section-title {
   transform: translateY(-2px);
 }
 
-/* --- Header Superior Fijo (Transparente Sin Fondo) --- */
+/* --- Header Superior Anclado al Inicio --- */
 .site-header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 100;
   padding: 32px max(5vw, 40px);
   background: transparent !important;
   backdrop-filter: none !important;
