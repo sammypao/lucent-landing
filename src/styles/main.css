@@ -378,15 +378,27 @@ h2.section-title {
 }
 
 .ui-card {
-  border: 1px solid var(--color-ink-border);
+  position: relative;
+  background: rgba(244, 240, 231, 0.48);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(23, 24, 21, 0.1);
   border-radius: var(--border-radius);
   padding: 24px;
-  transition: transform 0.35s ease, border-color 0.35s ease;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .ui-card:hover {
-  border-color: var(--color-ink);
+  border-color: rgba(255, 255, 255, 0.9);
   transform: translateY(-6px);
+  box-shadow: 
+    0 40px 75px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(23, 24, 21, 0.15);
 }
 
 .ui-image-wrapper {
