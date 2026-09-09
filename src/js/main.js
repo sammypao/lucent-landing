@@ -9,26 +9,29 @@
  */
 const initVideoPlaybackController = () => {
   const heroVideo = document.getElementById('hero-video');
-  const posterFallback = document.getElementById('hero-poster-fallback');
   const heroSection = document.getElementById('hero');
 
   if (!heroVideo || !heroSection) return;
 
   // Comprobar preferencia de movimiento reducido del usuario
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
   if (prefersReducedMotion) {
     heroVideo.pause();
-    if (posterFallback) posterFallback.style.display = 'block';
     return;
   }
 
-  // Intentar reproducción inicial silenciosa de forma segura
+  // Cuando el vídeo comience a reproducirse, se añade la clase is-playing para desvanecerlo suavemente sobre la imagen
+  heroVideo.addEventListener('playing', () => {
+    heroVideo.classList.add('is-playing');
+  });
+
+  // Intentar reproducción inicial silenciosa tras mostrar la imagen estática
   const playPromise = heroVideo.play();
   if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      // Si la reproducción automática es bloqueada por el navegador, se muestra el póster
-      if (posterFallback) posterFallback.style.display = 'block';
+    playPromise.then(() => {
+      heroVideo.classList.add('is-playing');
+    }).catch(() => {
+      // Si la reproducción automática es bloqueada, la imagen estática permanece visible sin fallar
     });
   }
 
@@ -37,7 +40,9 @@ const initVideoPlaybackController = () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         if (heroVideo.paused) {
-          heroVideo.play().catch(() => {});
+          heroVideo.play().then(() => {
+            heroVideo.classList.add('is-playing');
+          }).catch(() => {});
         }
       } else {
         if (!heroVideo.paused) {
