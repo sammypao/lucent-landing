@@ -152,16 +152,41 @@ h2.section-title {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  padding: 32px max(5vw, 40px);
-  pointer-events: none;
+  z-index: 1000;
+  padding: 18px max(5vw, 40px);
+  background: rgba(244, 240, 231, 0.72) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(23, 24, 21, 0.08) !important;
+  pointer-events: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  pointer-events: auto;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid rgba(23, 24, 21, 0.2);
+  border-radius: 4px;
+  color: var(--color-ink);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .section-brand {
@@ -447,6 +472,7 @@ h2.section-title {
 /* ==========================================================================
    4. PANEL DE PEDIDO EN GLASSMORPHISM Y CONFIGURADOR ARQUITECTÓNICO DE 1PX
    ========================================================================== */
+.editorial-glass-panel,
 .order-glass-panel {
   position: relative;
   background: rgba(244, 240, 231, 0.48) !important;
@@ -460,6 +486,9 @@ h2.section-title {
   border-radius: var(--border-radius);
   padding: 56px max(4vw, 40px);
   color: var(--color-ink);
+}
+
+.order-glass-panel {
   margin-top: 40px;
 }
 
