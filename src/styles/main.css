@@ -164,7 +164,7 @@ h2.section-title {
   justify-content: space-between;
 }
 
-.video-container {
+.hero-bg-container {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -172,20 +172,11 @@ h2.section-title {
   z-index: 1;
 }
 
-#hero-video {
+.hero-bg-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.poster-fallback {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: none;
 }
 
 /* Header superior */
