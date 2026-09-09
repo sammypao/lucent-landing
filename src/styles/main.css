@@ -673,7 +673,8 @@ h2.section-title {
    5. SECCIÓN FICHA TÉCNICA Y VISTA EN DETALLE DEL PRODUCTO
    ========================================================================== */
 .final-detail-section {
-  padding: 160px 0 140px 0;
+  padding: 160px 0 0 0;
+  margin-bottom: 70vh; /* Espacio de despeje para contemplar el fotograma final macro completamente libre */
   background: transparent !important;
   position: relative;
   z-index: 10;
@@ -735,7 +736,6 @@ h2.section-title {
   position: relative;
   width: 100%;
   padding: 160px 0 90px 0;
-  margin-top: 100px;
   background-color: #171815 !important;
   color: #f4f0e7 !important;
   z-index: 20;

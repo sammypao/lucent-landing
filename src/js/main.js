@@ -94,9 +94,13 @@ const initFullPageSequenceController = () => {
   let ticking = false;
   const updateSequenceOnScroll = () => {
     const scrollTop = window.scrollY || window.pageYOffset;
-    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const footer = document.querySelector('.section-fusion-closing');
+    const footerHeight = footer ? footer.offsetHeight : 0;
 
-    const progress = Math.max(0, Math.min(1, scrollTop / maxScroll));
+    // El scroll de la secuencia abarca exactamente desde el inicio hasta el comienzo del footer negro
+    const sequenceScrollableDistance = Math.max(1, document.documentElement.scrollHeight - window.innerHeight - footerHeight);
+
+    const progress = Math.max(0, Math.min(1, scrollTop / sequenceScrollableDistance));
     const targetIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
 
     if (targetIndex !== currentFrameIndex) {
