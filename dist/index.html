@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700&amp;display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@1,400&amp;display=swap">
   
-  <script type="module" crossorigin src="/assets/index-CMHOPpWk.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BbjG3lc0.css">
+  <script type="module" crossorigin src="/assets/index-C-e7_aBS.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-F_o2PX-8.css">
 </head>
 <body>
   <!-- Canvas Fijo de Fondo Global (Visualizable a lo largo de TODA la web) -->
@@ -75,7 +75,6 @@
           <div class="cabin-silhouette-container" aria-label="Esquema óptico de la lente Lucent">
             <svg class="cabin-svg" viewBox="0 0 540 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silueta de lente adaptativa Lucent">
               <rect x="20" y="40" width="500" height="280" rx="6" stroke="#171815" stroke-width="1" />
-              <!-- Lentes redondas iguales a las gafas originales -->
               <circle cx="155" cy="175" r="65" stroke="#171815" stroke-width="1" />
               <circle cx="385" cy="175" r="65" stroke="#171815" stroke-width="1" />
               <path d="M 220 165 C 240 155, 300 155, 320 165" stroke="#171815" stroke-width="1" />
@@ -219,41 +218,86 @@
       </div>
     </section>
 
-    <!-- 5. 04 / FORMULARIO DE PEDIDO MINIMALISTA INTEGRADO CON EL MISMO ESTILO DE LA PLANTILLA -->
+    <!-- 5. 04 / REALIZAR PEDIDO (PANEL DE ALTO CONTRASTE EN GLASSMORPHISM INTEGRADO CON EL DISEÑO DE LA PLANTILLA) -->
     <section class="section-editorial" id="seccion-pedido" aria-labelledby="heading-4">
       <div class="site-container">
-        <header class="editorial-header reveal">
-          <span class="section-copy label-tag">04 / REALIZAR PEDIDO</span>
-          <h2 id="heading-4" class="section-title editorial-title">
-            Solicita tus gafas<br><em>LUCENT 01</em>.
-          </h2>
-          <p class="section-copy editorial-intro">
-            Reserva tu par artesanal de la Serie 01. Completa tus datos para confirmar la asignación del pedido.
-          </p>
-        </header>
+        <!-- Panel Glassmorphism de Alto Contraste Separado del Fondo -->
+        <div class="order-glass-panel reveal">
+          <header class="editorial-header" style="margin-bottom: 48px;">
+            <span class="section-copy label-tag">04 / REALIZAR PEDIDO</span>
+            <h2 id="heading-4" class="section-title editorial-title">
+              Inicia tu pedido<br><em>LUCENT 01</em>.
+            </h2>
+            <p class="section-copy editorial-intro">
+              Selecciona la combinación de montura, lente y calibre para tu pedido de la Serie 01.
+            </p>
+          </header>
 
-        <!-- Formulario Arquitectónico Minimalista con Líneas de 1px -->
-        <div class="order-form-container reveal">
           <form id="order-form" class="minimal-order-form" novalidate>
-            <!-- Selección de Talla / Configuración -->
-            <div class="form-group-full">
-              <label class="form-label section-copy">MODELO Y TALLA</label>
-              <div class="options-grid">
-                <label class="option-card active">
-                  <input type="radio" name="size" value="standard" checked>
-                  <span class="option-title section-title">LUCENT 01 — Standard (48mm)</span>
-                  <span class="option-subtitle section-copy">Montura Dorada • Cristal Ámbar Mineral</span>
-                </label>
-                <label class="option-card">
-                  <input type="radio" name="size" value="large">
-                  <span class="option-title section-title">LUCENT 01 — Large (52mm)</span>
-                  <span class="option-subtitle section-copy">Montura Dorada • Cristal Ámbar Mineral</span>
-                </label>
+            <!-- Filas Abiertas de Configuración (Misma estética de 1px del resto de la plantilla) -->
+            <div class="config-rows-group">
+              <!-- Fila 1: Montura -->
+              <div class="config-editorial-row">
+                <div class="config-label-col section-copy">01 / MONTURA</div>
+                <div class="config-options-col">
+                  <button type="button" class="arch-chip active" data-group="finish" data-value="Dorado Pulido">
+                    <span class="dot-swatch gold-dot"></span>
+                    <span class="chip-text section-copy">Dorado Pulido</span>
+                  </button>
+                  <button type="button" class="arch-chip" data-group="finish" data-value="Titanio Mate">
+                    <span class="dot-swatch silver-dot"></span>
+                    <span class="chip-text section-copy">Titanio Mate</span>
+                  </button>
+                  <button type="button" class="arch-chip" data-group="finish" data-value="Negro Azabache">
+                    <span class="dot-swatch black-dot"></span>
+                    <span class="chip-text section-copy">Negro Azabache</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Fila 2: Cristal -->
+              <div class="config-editorial-row">
+                <div class="config-label-col section-copy">02 / CRISTAL</div>
+                <div class="config-options-col">
+                  <button type="button" class="arch-chip active" data-group="lens" data-value="Ámbar Solar">
+                    <span class="dot-swatch amber-dot"></span>
+                    <span class="chip-text section-copy">Ámbar Solar</span>
+                  </button>
+                  <button type="button" class="arch-chip" data-group="lens" data-value="Gris Calima">
+                    <span class="dot-swatch gray-dot"></span>
+                    <span class="chip-text section-copy">Gris Calima</span>
+                  </button>
+                  <button type="button" class="arch-chip" data-group="lens" data-value="Verde Botánica">
+                    <span class="dot-swatch green-dot"></span>
+                    <span class="chip-text section-copy">Verde Botánica</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Fila 3: Calibre -->
+              <div class="config-editorial-row">
+                <div class="config-label-col section-copy">03 / CALIBRE</div>
+                <div class="config-options-col">
+                  <button type="button" class="arch-chip active" data-group="size" data-value="Standard (48mm)">
+                    <span class="chip-text section-copy">Standard (48mm)</span>
+                  </button>
+                  <button type="button" class="arch-chip" data-group="size" data-value="Large (52mm)">
+                    <span class="chip-text section-copy">Large (52mm)</span>
+                  </button>
+                </div>
               </div>
             </div>
 
-            <!-- Campos de Entrada -->
-            <div class="form-row-2">
+            <!-- Resumen de Configuración -->
+            <div class="config-summary-bar">
+              <span class="summary-tag section-copy">CONFIGURACIÓN:</span>
+              <span id="dynamic-order-summary" class="summary-value section-title">
+                LUCENT 01 • Dorado Pulido • Ámbar Solar • Standard (48mm)
+              </span>
+            </div>
+
+            <!-- Campos de Entrada para Pedido -->
+            <div class="form-fields-grid">
               <div class="form-field">
                 <label for="order-name" class="form-label section-copy">NOMBRE COMPLETO</label>
                 <input
@@ -276,10 +320,7 @@
                   required
                 >
               </div>
-            </div>
-
-            <div class="form-group-full">
-              <div class="form-field">
+              <div class="form-field form-field-full">
                 <label for="order-address" class="form-label section-copy">DIRECCIÓN DE ENVÍO</label>
                 <input
                   type="text"
@@ -301,14 +342,14 @@
 
             <!-- Mensaje de Confirmación -->
             <div id="order-success-message" class="order-success-message section-copy" aria-live="polite">
-              ✓ Pedido registrado con éxito. Te hemos enviado un correo de confirmación con los detalles de tu reserva.
+              ✓ Pedido registrado con éxito. Te hemos enviado un correo de confirmación con los detalles de tu reserva LUCENT 01.
             </div>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- 6. SECCIÓN CIERRE AL FINAL: FUSIÓN SUAVE Y ELEGANTE -->
+    <!-- 6. SECCIÓN CIERRE AL FINAL -->
     <section class="section-fusion-closing" aria-label="Cierre de Campaña Lucent">
       <div class="site-container reveal">
         <div class="fusion-content">

@@ -1,6 +1,6 @@
 /**
  * @file main.js
- * @description Controlador principal para la secuencia de imágenes continua y gestión interactiva del pedido de LUCENT.
+ * @description Controlador principal para la secuencia de imágenes continua y configurador interactivo de pedido LUCENT.
  */
 
 /**
@@ -126,22 +126,55 @@ const initFullPageSequenceController = () => {
 };
 
 /**
- * Gestor interactivo del formulario de pedido minimalista.
+ * Gestor interactivo del configurador de pedido dinámico.
  */
 const initOrderFormHandler = () => {
   const form = document.getElementById('order-form');
+  const summaryEl = document.getElementById('dynamic-order-summary');
   const successMsg = document.getElementById('order-success-message');
-  const optionCards = document.querySelectorAll('.option-card');
+  const chips = document.querySelectorAll('.arch-chip');
 
   if (!form) return;
 
-  // Manejo de la selección visual de tarjetas de opción
-  optionCards.forEach((card) => {
-    card.addEventListener('click', () => {
-      optionCards.forEach((c) => c.classList.remove('active'));
-      card.classList.add('active');
-      const radio = card.querySelector('input[type="radio"]');
+  const currentConfig = {
+    finish: 'Dorado Pulido',
+    lens: 'Ámbar Solar',
+    size: 'Standard (48mm)'
+  };
+
+  /**
+   * Actualiza el texto de resumen de configuración en tiempo real.
+   */
+  const updateSummary = () => {
+    if (summaryEl) {
+      summaryEl.textContent = `LUCENT 01 • ${currentConfig.finish} • ${currentConfig.lens} • ${currentConfig.size}`;
+    }
+  };
+
+  /**
+   * Escuchador de eventos para los chips de selección de montura, lente y calibre.
+   */
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const group = chip.dataset.group;
+      const value = chip.dataset.value;
+
+      if (!group || !value) return;
+
+      // Desactivar chips hermanos del mismo grupo
+      const siblingChips = document.querySelectorAll(`.arch-chip[data-group="${group}"]`);
+      siblingChips.forEach((c) => c.classList.remove('active'));
+
+      // Activar chip seleccionado
+      chip.classList.add('active');
+
+      // Actualizar radio nativo si existe
+      const radio = chip.querySelector('input[type="radio"]');
       if (radio) radio.checked = true;
+
+      // Actualizar objeto de configuración y resumen
+      currentConfig[group] = value;
+      updateSummary();
     });
   });
 
@@ -153,11 +186,6 @@ const initOrderFormHandler = () => {
         successMsg.classList.add('visible');
       }
       form.reset();
-      // Mantener seleccionada la primera tarjeta por defecto
-      if (optionCards[0]) {
-        optionCards.forEach((c) => c.classList.remove('active'));
-        optionCards[0].classList.add('active');
-      }
     } else {
       form.reportValidity();
     }
