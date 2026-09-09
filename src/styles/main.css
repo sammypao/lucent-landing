@@ -181,7 +181,6 @@ h2.section-title {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.28) translateX(10%);
   display: block;
 }
 
@@ -192,7 +191,7 @@ h2.section-title {
 .hero-video {
   z-index: 2;
   opacity: 0;
-  transition: opacity 2.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.6s ease;
 }
 
 .hero-video.is-playing {
