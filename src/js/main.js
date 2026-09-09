@@ -1,6 +1,6 @@
 /**
  * @file main.js
- * @description Controlador principal para la secuencia de imágenes continua a lo largo de toda la página.
+ * @description Controlador principal para la secuencia de imágenes continua y gestión interactiva del pedido de LUCENT.
  */
 
 /**
@@ -126,6 +126,45 @@ const initFullPageSequenceController = () => {
 };
 
 /**
+ * Gestor interactivo del formulario de pedido minimalista.
+ */
+const initOrderFormHandler = () => {
+  const form = document.getElementById('order-form');
+  const successMsg = document.getElementById('order-success-message');
+  const optionCards = document.querySelectorAll('.option-card');
+
+  if (!form) return;
+
+  // Manejo de la selección visual de tarjetas de opción
+  optionCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      optionCards.forEach((c) => c.classList.remove('active'));
+      card.classList.add('active');
+      const radio = card.querySelector('input[type="radio"]');
+      if (radio) radio.checked = true;
+    });
+  });
+
+  // Envío del formulario
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (form.checkValidity()) {
+      if (successMsg) {
+        successMsg.classList.add('visible');
+      }
+      form.reset();
+      // Mantener seleccionada la primera tarjeta por defecto
+      if (optionCards[0]) {
+        optionCards.forEach((c) => c.classList.remove('active'));
+        optionCards[0].classList.add('active');
+      }
+    } else {
+      form.reportValidity();
+    }
+  });
+};
+
+/**
  * Configura las animaciones de revelado al hacer scroll (reveal on scroll).
  */
 const initScrollRevealController = () => {
@@ -158,5 +197,6 @@ const initScrollRevealController = () => {
  */
 document.addEventListener('DOMContentLoaded', () => {
   initFullPageSequenceController();
+  initOrderFormHandler();
   initScrollRevealController();
 });
