@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUCENT — Movilidad Autónoma</title>
+  <meta name="description" content="Una cabina luminosa que aprende de cada momento del día. Movilidad autónoma por LUCENT.">
+  
+  <!-- Fuentes externas requeridas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@1,400&amp;display=swap">
+  
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <!-- 1. HERO SECTION -->
+  <header class="hero-section" id="hero" aria-label="Hero Lucent">
+    <div class="video-container">
+      <video
+        id="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/media/glassline-carriage-seamless-16x9.png"
+        aria-hidden="true"
+      >
+        <source src="/media/glassline-carriage-seamless-16x9-loop.mp4" type="video/mp4">
+        <source src="https://media.dinamosites.com/library/v1/video/glassline-carriage-seamless-16x9-loop-b89ec67af732.mp4" type="video/mp4">
+      </video>
+      <img
+        id="hero-poster-fallback"
+        class="poster-fallback"
+        src="/media/glassline-carriage-seamless-16x9.png"
+        alt="Lucent Glassline Carriage Interior"
+      >
+    </div>
+
+    <!-- Navegación superior -->
+    <div class="hero-header-bar">
+      <a href="#hero" class="section-brand">LUCENT</a>
+      <nav class="section-nav hero-nav" aria-label="Navegación principal">
+        <a href="#cabina-adaptable" class="nav-link">Cabina</a>
+        <a href="#ruta-personal" class="nav-link">Rutas</a>
+        <a href="#ruta-personal" class="nav-link">Reservar</a>
+      </nav>
+    </div>
+
+    <!-- Bloque de texto principal con degradado exclusivo detrás -->
+    <div class="hero-content-wrapper reveal">
+      <div class="hero-text-backdrop"></div>
+      <div class="hero-text-block">
+        <h1 class="section-title hero-title">
+          El trayecto se convierte<br>en <em>espacio</em>.
+        </h1>
+        <p class="section-copy hero-copy">
+          Una cabina luminosa que aprende de cada momento del día.
+        </p>
+        <div class="hero-actions">
+          <a href="#ruta-personal" class="btn btn-primary">Diseñar mi trayecto</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pie del Hero -->
+    <div class="hero-footer-bar section-copy">
+      <span class="hero-tag">SERIE 01</span>
+      <span class="hero-divider-dot" aria-hidden="true">/</span>
+      <span class="hero-subtag">MOVILIDAD AUTÓNOMA</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. 01 / CABINA ADAPTABLE -->
+    <section class="section-editorial" id="cabina-adaptable" aria-labelledby="editorial-heading">
+      <div class="site-container">
+        <header class="editorial-header reveal">
+          <span class="section-copy label-tag">01 / CABINA ADAPTABLE</span>
+          <h2 id="editorial-heading" class="section-title editorial-title">
+            Una hora que<br>vuelve a ser <em>tuya</em>.
+          </h2>
+          <p class="section-copy editorial-intro">
+            Lucent transforma cada desplazamiento en un espacio privado para pensar, conversar o descansar.
+          </p>
+        </header>
+
+        <!-- Geometría Distintiva: 2 Columnas 1fr / 1.25fr -->
+        <div class="editorial-geometry reveal">
+          <!-- Columna Izquierda: Silueta de cabina dibujada con bordes de 1px -->
+          <div class="cabin-silhouette-container" aria-label="Esquema de silueta de la cabina Lucent">
+            <svg class="cabin-svg" viewBox="0 0 540 360" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silueta arquitectónica de cabina Lucent">
+              <!-- Marco exterior envolvente -->
+              <rect x="20" y="40" width="500" height="280" rx="6" stroke="#171815" stroke-width="1" stroke-dasharray="none" />
+
+              <!-- Silueta curva principal del techo panorámico -->
+              <path d="M 60 260 C 60 110, 140 70, 270 70 C 400 70, 480 110, 480 260 Z" stroke="#171815" stroke-width="1" />
+
+              <!-- Línea de chasis inferior de la cabina -->
+              <line x1="50" y1="260" x2="490" y2="260" stroke="#171815" stroke-width="1" />
+
+              <!-- Lunas panorámicas de cristal y división arquitectónica central -->
+              <path d="M 120 260 L 140 120 C 200 95, 260 90, 270 90" stroke="#171815" stroke-width="1" stroke-dasharray="3 3" />
+              <path d="M 420 260 L 400 120 C 340 95, 280 90, 270 90" stroke="#171815" stroke-width="1" stroke-dasharray="3 3" />
+              <line x1="270" y1="70" x2="270" y2="260" stroke="#171815" stroke-width="1" />
+
+              <!-- Asientos de lounge contorneados interiormente -->
+              <path d="M 140 260 L 160 210 L 210 210 L 225 260" stroke="#171815" stroke-width="1" />
+              <path d="M 400 260 L 380 210 L 330 210 L 315 260" stroke="#171815" stroke-width="1" />
+
+              <!-- Ejes / Suspensión autónoma minimalista -->
+              <circle cx="130" cy="275" r="14" stroke="#171815" stroke-width="1" />
+              <circle cx="130" cy="275" r="4" fill="#171815" />
+              <circle cx="410" cy="275" r="14" stroke="#171815" stroke-width="1" />
+              <circle cx="410" cy="275" r="4" fill="#171815" />
+
+              <!-- Indicadores de cota de luz y dimensión de precisión -->
+              <line x1="20" y1="20" x2="520" y2="20" stroke="#171815" stroke-width="1" stroke-opacity="0.3" />
+              <line x1="20" y1="16" x2="20" y2="24" stroke="#171815" stroke-width="1" />
+              <line x1="520" y1="16" x2="520" y2="24" stroke="#171815" stroke-width="1" />
+              <text x="270" y="16" text-anchor="middle" fill="#171815" font-family="Instrument Sans" font-size="10" letter-spacing="1">CABIN GEOMETRY / 3.4M</text>
+            </svg>
+          </div>
+
+          <!-- Columna Derecha: Tres filas abiertas (42px index + 1fr/1fr) -->
+          <div class="editorial-rows-wrapper">
+            <!-- Fila 1 -->
+            <div class="editorial-row">
+              <div class="row-num section-copy">01</div>
+              <div class="row-content">
+                <div class="row-title section-title">Luz</div>
+                <div class="row-desc section-copy">Se ajusta al ritmo del trayecto</div>
+              </div>
+            </div>
+
+            <!-- Fila 2 -->
+            <div class="editorial-row">
+              <div class="row-num section-copy">02</div>
+              <div class="row-content">
+                <div class="row-title section-title">Silencio</div>
+                <div class="row-desc section-copy">Aislamiento acústico activo</div>
+              </div>
+            </div>
+
+            <!-- Fila 3 -->
+            <div class="editorial-row">
+              <div class="row-num section-copy">03</div>
+              <div class="row-content">
+                <div class="row-title section-title">Espacio</div>
+                <div class="row-desc section-copy">Tres configuraciones instantáneas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 02 / RUTA PERSONAL -->
+    <section class="section-closing" id="ruta-personal" aria-labelledby="closing-heading">
+      <!-- Círculos concéntricos finos saliendo del borde derecho -->
+      <div class="concentric-circles-container" aria-hidden="true">
+        <svg viewBox="0 0 600 600" class="concentric-circles-svg" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="600" cy="300" r="140" stroke="#f4f0e7" stroke-width="1" fill="none" opacity="0.35" />
+          <circle cx="600" cy="300" r="280" stroke="#f4f0e7" stroke-width="1" fill="none" opacity="0.25" />
+          <circle cx="600" cy="300" r="440" stroke="#f4f0e7" stroke-width="1" fill="none" opacity="0.15" />
+        </svg>
+      </div>
+
+      <div class="closing-content site-container reveal">
+        <span class="section-copy label-tag dark-mode">02 / RUTA PERSONAL</span>
+        <h2 id="closing-heading" class="section-title closing-title">
+          Tu próxima hora<br>empieza <em>antes</em>.
+        </h2>
+        <p class="section-copy closing-copy">
+          Define el ambiente. Nosotros nos ocupamos del camino.
+        </p>
+        <div class="closing-actions">
+          <a href="#hero" class="btn btn-secondary">Reservar LUCENT 01</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
