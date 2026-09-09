@@ -469,19 +469,19 @@ h2.section-title {
 }
 
 /* ==========================================================================
-   4. PANELES EN GLASSMORPHISM (SECCIÓN 2 Y SECCIÓN 4)
+   4. PANELES EN GLASSMORPHISM (SECCIÓN 1, SECCIÓN 2 Y SECCIÓN 4)
    ========================================================================== */
 .editorial-glass-panel,
 .order-glass-panel {
   position: relative;
-  background: rgba(244, 240, 231, 0.48) !important;
-  backdrop-filter: blur(28px) saturate(200%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  background: rgba(244, 240, 231, 0.32) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
   box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0 rgba(23, 24, 21, 0.1) !important;
+    0 30px 60px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(23, 24, 21, 0.08) !important;
   border-radius: var(--border-radius);
   padding: 56px max(4vw, 40px);
   color: var(--color-ink);
