@@ -20,34 +20,27 @@ const initVideoPlaybackController = () => {
     return;
   }
 
-  // Cuando el vídeo comience a reproducirse, se añade la clase is-playing para desvanecerlo suavemente sobre la imagen
-  heroVideo.addEventListener('playing', () => {
-    heroVideo.classList.add('is-playing');
-  });
+  // Mantener el vídeo pausado e invisible inicialmente para permitir ver la imagen estática
+  heroVideo.pause();
+  heroVideo.classList.remove('is-playing');
 
-  // Intentar reproducción inicial silenciosa tras mostrar la imagen estática
-  const playPromise = heroVideo.play();
-  if (playPromise !== undefined) {
-    playPromise.then(() => {
-      heroVideo.classList.add('is-playing');
-    }).catch(() => {
-      // Si la reproducción automática es bloqueada, la imagen estática permanece visible sin fallar
-    });
-  }
+  // Transcurridos 1.8 segundos mostrando la imagen estática, iniciar suavemente la reproducción del vídeo
+  setTimeout(() => {
+    const playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        heroVideo.classList.add('is-playing');
+      }).catch(() => {
+        // En caso de bloqueo por el navegador, la imagen estática permanece visible sin fallos
+      });
+    }
+  }, 1800);
 
-  // Observador de visibilidad en viewport
+  // Observador de visibilidad en el viewport
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        if (heroVideo.paused) {
-          heroVideo.play().then(() => {
-            heroVideo.classList.add('is-playing');
-          }).catch(() => {});
-        }
-      } else {
-        if (!heroVideo.paused) {
-          heroVideo.pause();
-        }
+      if (!entry.isIntersecting && !heroVideo.paused) {
+        heroVideo.pause();
       }
     });
   }, { threshold: 0.15 });
