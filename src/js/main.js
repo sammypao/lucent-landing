@@ -1,63 +1,141 @@
 /**
  * @file main.js
- * @description Controlador principal de interacciones, animaciones de scroll y gestión de vídeo para la landing de LUCENT.
+ * @description Controlador principal para la secuencia de imágenes por scroll y animaciones para LUCENT.
  */
 
 /**
- * Inicializa el observador de intersección para pausar el vídeo cuando sale de pantalla
- * y reanudarlo únicamente cuando está visible en el viewport.
+ * Total de frames extraídos de la secuencia.
  */
-const initVideoPlaybackController = () => {
-  const heroVideo = document.getElementById('hero-video');
-  const heroSection = document.getElementById('hero');
+const FRAME_COUNT = 80;
 
-  if (!heroVideo || !heroSection) return;
-
-  // Comprobar preferencia de movimiento reducido del usuario
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) {
-    heroVideo.pause();
-    return;
-  }
-
-  // Mantener el vídeo pausado e invisible inicialmente para permitir ver la imagen estática
-  heroVideo.pause();
-  heroVideo.classList.remove('is-playing');
-
-  // Transcurridos 1.4 segundos mostrando la imagen estática a escala real, iniciar la transición suave hacia el vídeo
-  setTimeout(() => {
-    const playPromise = heroVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        heroVideo.classList.add('is-playing');
-      }).catch(() => {
-        // En caso de bloqueo por el navegador, la imagen estática permanece visible sin fallos
-      });
-    }
-  }, 1400);
-
-  // Observador de visibilidad en el viewport
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting && !heroVideo.paused) {
-        heroVideo.pause();
-      }
-    });
-  }, { threshold: 0.15 });
-
-  videoObserver.observe(heroSection);
+/**
+ * Genera la ruta de cada fotograma.
+ * @param {number} index - Índice del fotograma (0 a 79).
+ * @returns {string} Ruta absoluta del fotograma.
+ */
+const getFramePath = (index) => {
+  const paddedIndex = String(index).padStart(3, '0');
+  return `/media/sequence/frame_${paddedIndex}.jpg`;
 };
 
 /**
- * Configura las animaciones de revelado al hacer scroll (reveal on scroll)
- * mediante IntersectionObserver para aplicar opacity y translateY.
+ * Controlador de la secuencia de imágenes vinculada al desplazamiento (scroll scrubbing).
+ */
+const initScrollSequenceController = () => {
+  const canvas = document.getElementById('hero-canvas');
+  const heroTrack = document.getElementById('hero-track');
+  if (!canvas || !heroTrack) return;
+
+  const ctx = canvas.getContext('2d');
+  const images = [];
+  let currentFrameIndex = 0;
+
+  /**
+   * Pre-carga todos los fotogramas en memoria.
+   */
+  const preloadImages = () => {
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const img = new Image();
+      img.src = getFramePath(i);
+      if (i === 0) {
+        img.onload = () => drawFrame(0);
+      }
+      images.push(img);
+    }
+  };
+
+  /**
+   * Ajusta las dimensiones del canvas al tamaño del contenedor adaptando la relación de aspecto 'cover'.
+   */
+  const resizeCanvas = () => {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    drawFrame(currentFrameIndex);
+  };
+
+  /**
+   * Dibuja un fotograma específico en el canvas emulando 'object-fit: cover'.
+   * @param {number} index - Índice del fotograma a dibujar.
+   */
+  const drawFrame = (index) => {
+    const img = images[index];
+    if (!img || !img.complete) return;
+
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+    const imgWidth = img.naturalWidth || 2752;
+    const imgHeight = img.naturalHeight || 1536;
+
+    const imgRatio = imgWidth / imgHeight;
+    const canvasRatio = canvasWidth / canvasHeight;
+
+    let drawWidth, drawHeight, offsetX, offsetY;
+
+    if (canvasRatio > imgRatio) {
+      drawWidth = canvasWidth;
+      drawHeight = canvasWidth / imgRatio;
+      offsetX = 0;
+      offsetY = (canvasHeight - drawHeight) / 2;
+    } else {
+      drawHeight = canvasHeight;
+      drawWidth = canvasHeight * imgRatio;
+      offsetX = (canvasWidth - drawWidth) / 2;
+      offsetY = 0;
+    }
+
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+  };
+
+  /**
+   * Calcula el fotograma según la posición de scroll y actualiza el canvas.
+   */
+  let ticking = false;
+  const updateSequenceOnScroll = () => {
+    const rect = heroTrack.getBoundingClientRect();
+    const scrollableDistance = heroTrack.offsetHeight - window.innerHeight;
+    
+    if (scrollableDistance <= 0) return;
+
+    // Calcular progreso de scroll de 0 a 1 dentro del hero track
+    const scrolled = -rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+    const targetIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
+
+    if (targetIndex !== currentFrameIndex) {
+      currentFrameIndex = targetIndex;
+      drawFrame(currentFrameIndex);
+    }
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateSequenceOnScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+
+  // Event Listeners
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', resizeCanvas);
+
+  // Inicialización
+  preloadImages();
+  resizeCanvas();
+};
+
+/**
+ * Configura las animaciones de revelado al hacer scroll (reveal on scroll).
  */
 const initScrollRevealController = () => {
   const revealElements = document.querySelectorAll('.reveal');
   if (revealElements.length === 0) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   if (prefersReducedMotion) {
     revealElements.forEach((el) => el.classList.add('is-visible'));
     return;
@@ -67,7 +145,7 @@ const initScrollRevealController = () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); // Revelar una única vez
+        observer.unobserve(entry.target);
       }
     });
   }, {
@@ -82,6 +160,6 @@ const initScrollRevealController = () => {
  * Manejador principal al cargar el DOM.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  initVideoPlaybackController();
+  initScrollSequenceController();
   initScrollRevealController();
 });
