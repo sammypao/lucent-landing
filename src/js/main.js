@@ -109,10 +109,31 @@ const initFullPageSequenceController = () => {
     }
   };
 
+  /**
+   * Controla la aparición en batería progresiva vinculada al scroll para las tarjetas magazine.
+   * Cada tarjeta aparece individualmente en pantalla conforme la línea de scroll avanza.
+   */
+  const updateMagazineCardsOnScroll = () => {
+    const cards = document.querySelectorAll('.magazine-spec-card');
+    if (cards.length === 0) return;
+
+    const triggerLine = window.innerHeight * 0.82;
+
+    cards.forEach((card) => {
+      const cardTop = card.getBoundingClientRect().top;
+      if (cardTop < triggerLine) {
+        card.classList.add('is-visible');
+      } else {
+        card.classList.remove('is-visible');
+      }
+    });
+  };
+
   const onScroll = () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         updateSequenceOnScroll();
+        updateMagazineCardsOnScroll();
         ticking = false;
       });
       ticking = true;
@@ -127,6 +148,7 @@ const initFullPageSequenceController = () => {
   preloadImages();
   resizeCanvas();
   updateSequenceOnScroll();
+  updateMagazineCardsOnScroll();
 };
 
 /**
