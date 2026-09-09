@@ -24,6 +24,10 @@
   padding: 0;
 }
 
+button, input, select, textarea {
+  font-family: var(--font-sans);
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -65,10 +69,13 @@ body {
   color: var(--color-ink);
 }
 
-.section-title em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
+.section-title em,
+.editorial-title em,
+.hero-title em,
+.fusion-title em {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
 }
 
 .section-title {
