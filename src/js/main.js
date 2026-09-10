@@ -247,10 +247,31 @@ const initScrollRevealController = () => {
 };
 
 /**
+ * Inicializa la navegación suave (smooth scroll) para todos los enlaces que apuntan a una sección con id.
+ * Al pulsar el botón del hero "Diseñar mis lentes", desplaza la vista fluidamente hasta el formulario de pedido.
+ */
+const initSmoothAnchorNavigation = () => {
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+  anchorLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const targetId = link.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        event.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+};
+
+/**
  * Manejador principal al cargar el DOM.
  */
 document.addEventListener('DOMContentLoaded', () => {
   initFullPageSequenceController();
   initOrderFormHandler();
   initScrollRevealController();
+  initSmoothAnchorNavigation();
 });

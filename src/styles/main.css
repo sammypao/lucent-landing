@@ -6,7 +6,7 @@
 :root {
   --color-ink: #171815;
   --color-paper: #f4f0e7;
-  --color-accent: #c7ff4a;
+  --color-accent: #ffb300;
   --color-ink-muted: rgba(23, 24, 21, 0.75);
   --color-ink-border: rgba(23, 24, 21, 0.2);
   
@@ -129,20 +129,36 @@ h2.section-title {
   letter-spacing: 0.5px;
   text-decoration: none;
   border-radius: var(--border-radius);
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 }
 
-.btn-primary {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
-  border: 1px solid var(--color-ink);
+.btn-primary,
+.hero-actions .btn,
+#hero-order-btn,
+a.btn-primary {
+  background-color: var(--color-ink) !important;
+  color: var(--color-paper) !important;
+  border: 1px solid var(--color-ink) !important;
 }
 
-.btn-primary:hover {
-  background-color: #2b2d28;
-  color: var(--color-accent);
-  border-color: #2b2d28;
+.btn-primary:hover,
+.btn-primary:focus,
+.hero-actions .btn:hover,
+.hero-actions .btn:focus,
+.hero-actions .btn.is-hovered,
+.hero-actions a.btn:hover,
+.hero-actions a.btn:focus,
+.hero-actions a.btn.is-hovered,
+#hero-order-btn:hover,
+#hero-order-btn:focus,
+#hero-order-btn.is-hovered,
+a.btn-primary:hover,
+a.btn-primary:focus,
+a.btn-primary:visited:hover {
+  background-color: #2b2d28 !important;
+  color: var(--color-accent) !important;
+  border-color: #2b2d28 !important;
   transform: translateY(-2px);
 }
 
@@ -243,19 +259,16 @@ h2.section-title {
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-top: 120px;
+  justify-content: center;
+  padding: 160px max(5vw, 40px) 140px max(5vw, 40px);
   z-index: 10;
 }
 
 .hero-content-wrapper {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: max(5vw, 40px);
+  position: relative;
   width: min(610px, 46vw);
   z-index: 5;
 }
@@ -663,7 +676,7 @@ h2.section-title {
   padding: 20px;
   border: 1px solid var(--color-ink);
   border-radius: var(--border-radius);
-  background-color: rgba(199, 255, 74, 0.3);
+  background-color: rgba(245, 158, 11, 0.25);
   color: var(--color-ink);
   font-weight: 600;
   margin-top: 16px;
@@ -836,13 +849,13 @@ h2.section-title {
     padding: 24px 22px;
   }
 
+  .hero-section {
+    padding: 120px 22px 80px 22px;
+  }
+
   .hero-content-wrapper {
-    top: auto;
-    bottom: 86px;
-    left: 22px;
-    right: 22px;
-    width: auto;
-    transform: none;
+    position: relative;
+    width: 100%;
   }
 
   h1.section-title {
