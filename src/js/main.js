@@ -15,7 +15,7 @@ const FRAME_COUNT = 80;
  */
 const getFramePath = (index) => {
   const paddedIndex = String(index).padStart(3, '0');
-  return `/media/sequence/frame_${paddedIndex}.jpg`;
+  return `./media/sequence/frame_${paddedIndex}.jpg`;
 };
 
 /**
