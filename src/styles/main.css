@@ -189,6 +189,8 @@ a.btn-primary:visited:hover {
   display: flex;
   align-items: center;
   gap: 20px;
+  position: relative;
+  z-index: 95;
 }
 
 .header-status-badge {
@@ -245,6 +247,41 @@ a.btn-primary:visited:hover {
   width: 100%;
 }
 
+/* Botón de menú: solo aparece cuando la barra de navegación no cabe.
+   Se mantiene por encima de la capa desplegada para poder cerrarla. */
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 95;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: rgba(244, 240, 231, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-ink-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-toggle .nav-toggle-close,
+.nav-toggle[aria-expanded='true'] .nav-toggle-open {
+  display: none;
+}
+
+.nav-toggle[aria-expanded='true'] .nav-toggle-close {
+  display: inline;
+}
+
+body.nav-locked {
+  overflow: hidden;
+}
+
 /* --- Layout Contenedor --- */
 .site-container {
   width: 100%;
@@ -267,6 +304,51 @@ a.btn-primary:visited:hover {
   z-index: 10;
 }
 
+/* Velo de legibilidad: apenas un apoyo. El trabajo de contraste lo hace el halo
+   de .hero-text-block, que actúa solo alrededor de las letras, así que el velo
+   puede quedarse casi transparente y dejar ver la fotografía. */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    rgba(244, 240, 231, 0.28) 0%,
+    rgba(244, 240, 231, 0.20) 28%,
+    rgba(244, 240, 231, 0.08) 48%,
+    rgba(244, 240, 231, 0) 66%
+  );
+}
+
+/* Halo en el tono papel de la marca, ceñido al contorno de cada letra. Es lo que
+   devuelve el contraste donde el texto se cruza con las zonas oscuras de la foto
+   —el pelo y las gafas— y por eso el velo de arriba puede quedarse tan bajo.
+
+   El titular lleva un halo ancho y suave: con un trazo de 70 px la sombra cubre
+   de sobra y un radio corto se vería como contorno recortado. */
+.hero-title {
+  text-shadow:
+    0 0 4px rgba(244, 240, 231, 0.95),
+    0 0 12px rgba(244, 240, 231, 0.9),
+    0 0 28px rgba(244, 240, 231, 0.7);
+}
+
+/* El texto pequeño necesita lo contrario: con un trazo de 2 px un desenfoque
+   ancho apenas deja tono bajo la letra (medido: 0,29 de cobertura). Las dos
+   primeras capas, muy ceñidas, la suben a 0,70; a este tamaño no se leen como
+   contorno. */
+.hero-text-block .label-tag,
+.hero-copy {
+  text-shadow:
+    0 0 1.5px rgba(244, 240, 231, 1),
+    0 0 3px rgba(244, 240, 231, 1),
+    0 0 8px rgba(244, 240, 231, 0.95),
+    0 0 20px rgba(244, 240, 231, 0.8),
+    0 0 36px rgba(244, 240, 231, 0.55);
+}
+
 .hero-content-wrapper {
   position: relative;
   width: min(610px, 46vw);
@@ -286,7 +368,9 @@ a.btn-primary:visited:hover {
 .hero-copy {
   margin-bottom: 36px;
   max-width: 460px;
-  color: var(--color-ink-muted);
+  /* Tinta plena en lugar del gris al 75%: es el único párrafo que cae sobre la
+     zona más luminosa de la fotografía y con el gris no alcanzaba el mínimo legible. */
+  color: var(--color-ink);
 }
 
 .hero-actions {
@@ -674,12 +758,23 @@ a.btn-primary:visited:hover {
 .order-success-message {
   display: none;
   padding: 20px;
+  animation: success-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid var(--color-ink);
   border-radius: var(--border-radius);
   background-color: rgba(245, 158, 11, 0.25);
   color: var(--color-ink);
   font-weight: 600;
   margin-top: 16px;
+}
+
+/* El JS añade esta clase al confirmar el pedido. Sin ella el mensaje nunca se mostraba. */
+.order-success-message.visible {
+  display: block;
+}
+
+@keyframes success-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
@@ -841,16 +936,74 @@ a.btn-primary:visited:hover {
    RESPONSIVE DESIGN (< 760px)
    ========================================================================== */
 @media (max-width: 760px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* La navegación pasa a ser una capa a pantalla completa en vez de desaparecer. */
   .site-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0 28px;
+    background: rgba(244, 240, 231, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .site-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .site-nav .nav-link {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: none;
+    padding: 14px 0;
+  }
+
+  .header-status-badge {
     display: none;
   }
 
+  /* En móvil la página mide más de 12 pantallas: el acceso al menú debe seguir
+     alcanzable en todo momento, no solo en el hero. */
   .site-header {
-    padding: 24px 22px;
+    position: fixed;
+    padding: 20px 22px;
+    /* Degradado corto que despega la marca del contenido al hacer scroll,
+       sin convertirse en una barra sólida. */
+    background: linear-gradient(
+      to bottom,
+      rgba(244, 240, 231, 0.9) 0%,
+      rgba(244, 240, 231, 0.65) 55%,
+      rgba(244, 240, 231, 0) 100%
+    ) !important;
+    padding-bottom: 28px;
   }
 
   .hero-section {
     padding: 120px 22px 80px 22px;
+  }
+
+  /* A pantalla estrecha el texto ocupa todo el ancho, así que el velo baja desde arriba. */
+  .hero-section::before {
+    background: linear-gradient(
+      180deg,
+      rgba(244, 240, 231, 0.26) 0%,
+      rgba(244, 240, 231, 0.20) 42%,
+      rgba(244, 240, 231, 0.10) 62%,
+      rgba(244, 240, 231, 0) 86%
+    );
   }
 
   .hero-content-wrapper {
@@ -925,10 +1078,15 @@ a.btn-primary:visited:hover {
    PREFERS-REDUCED-MOTION
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .magazine-spec-card {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  .order-success-message {
+    animation: none !important;
   }
 
   html {
