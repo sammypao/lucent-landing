@@ -11,6 +11,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&amp;display=swap">
   
+  <link rel="canonical" href="https://sammypao.github.io/lucent-landing/">
+  <meta name="theme-color" content="#f4f0e7">
+
+  <!-- Tarjeta social: sin esto el enlace se comparte sin miniatura -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LUCENT">
+  <meta property="og:title" content="LUCENT — Alta Óptica &amp; Diseño Conceptual">
+  <meta property="og:description" content="Gafas de sol de diseño conceptual y montura dorada artesanal. Alta óptica de precisión por LUCENT.">
+  <meta property="og:image" content="https://sammypao.github.io/lucent-landing/media/og-cover.jpg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LUCENT — Alta Óptica &amp; Diseño Conceptual">
+  <meta name="twitter:description" content="Gafas de sol de diseño conceptual y montura dorada artesanal. Alta óptica de precisión por LUCENT.">
+  <meta name="twitter:image" content="https://sammypao.github.io/lucent-landing/media/og-cover.jpg">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- El primer fotograma es lo primero que se ve: que empiece a bajar ya -->
+  <link rel="preload" as="image" href="/media/sequence/frame_000.webp" fetchpriority="high">
+
   <link rel="stylesheet" href="/src/styles/main.css">
 </head>
 <body>
@@ -24,7 +47,11 @@
         <a href="#hero" class="section-brand">LUCENT</a>
         <span class="header-status-badge section-copy">SERIE 01 / ALTA ÓPTICA</span>
       </div>
-      <nav class="section-nav site-nav" aria-label="Navegación principal">
+      <button type="button" id="nav-toggle" class="nav-toggle section-copy" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-open">Menú</span>
+        <span class="nav-toggle-close">Cerrar</span>
+      </button>
+      <nav id="site-nav" class="section-nav site-nav" aria-label="Navegación principal">
         <a href="#caracteristicas-opticas" class="nav-link">Colección</a>
         <a href="#especificaciones-montura" class="nav-link">Montura</a>
         <a href="#galeria-producto" class="nav-link">Galería</a>
@@ -185,10 +212,11 @@
           <div class="ui-card">
             <div class="ui-image-wrapper">
               <img
-                src="./media/glasses-ui-1.png"
+                src="/media/glasses-ui-1.webp"
                 alt="Lucent Sunglasses - Vista Isométrica de Producto"
                 class="ui-img"
-                loading="lazy"
+                width="1024" height="1024"
+                loading="lazy" decoding="async"
               >
             </div>
             <div class="ui-card-caption">
@@ -201,10 +229,11 @@
           <div class="ui-card">
             <div class="ui-image-wrapper">
               <img
-                src="./media/glasses-ui-2.png"
+                src="/media/glasses-ui-2.webp"
                 alt="Lucent Sunglasses - Vista Macro de Perfil"
                 class="ui-img"
-                loading="lazy"
+                width="1024" height="1024"
+                loading="lazy" decoding="async"
               >
             </div>
             <div class="ui-card-caption">
@@ -238,16 +267,16 @@
               <!-- Fila 1: Montura -->
               <div class="config-editorial-row">
                 <div class="config-label-col section-copy">01 / MONTURA</div>
-                <div class="config-options-col">
-                  <button type="button" class="arch-chip active" data-group="finish" data-value="Dorado Pulido">
+                <div class="config-options-col" role="radiogroup" aria-label="Acabado de montura">
+                  <button type="button" class="arch-chip active" role="radio" aria-checked="true" data-group="finish" data-value="Dorado Pulido">
                     <span class="dot-swatch gold-dot"></span>
                     <span class="chip-text section-copy">Dorado Pulido</span>
                   </button>
-                  <button type="button" class="arch-chip" data-group="finish" data-value="Titanio Mate">
+                  <button type="button" class="arch-chip" role="radio" aria-checked="false" data-group="finish" data-value="Titanio Mate">
                     <span class="dot-swatch silver-dot"></span>
                     <span class="chip-text section-copy">Titanio Mate</span>
                   </button>
-                  <button type="button" class="arch-chip" data-group="finish" data-value="Negro Azabache">
+                  <button type="button" class="arch-chip" role="radio" aria-checked="false" data-group="finish" data-value="Negro Azabache">
                     <span class="dot-swatch black-dot"></span>
                     <span class="chip-text section-copy">Negro Azabache</span>
                   </button>
@@ -257,16 +286,16 @@
               <!-- Fila 2: Cristal -->
               <div class="config-editorial-row">
                 <div class="config-label-col section-copy">02 / CRISTAL</div>
-                <div class="config-options-col">
-                  <button type="button" class="arch-chip active" data-group="lens" data-value="Ámbar Solar">
+                <div class="config-options-col" role="radiogroup" aria-label="Tipo de cristal">
+                  <button type="button" class="arch-chip active" role="radio" aria-checked="true" data-group="lens" data-value="Ámbar Solar">
                     <span class="dot-swatch amber-dot"></span>
                     <span class="chip-text section-copy">Ámbar Solar</span>
                   </button>
-                  <button type="button" class="arch-chip" data-group="lens" data-value="Gris Calima">
+                  <button type="button" class="arch-chip" role="radio" aria-checked="false" data-group="lens" data-value="Gris Calima">
                     <span class="dot-swatch gray-dot"></span>
                     <span class="chip-text section-copy">Gris Calima</span>
                   </button>
-                  <button type="button" class="arch-chip" data-group="lens" data-value="Verde Botánica">
+                  <button type="button" class="arch-chip" role="radio" aria-checked="false" data-group="lens" data-value="Verde Botánica">
                     <span class="dot-swatch green-dot"></span>
                     <span class="chip-text section-copy">Verde Botánica</span>
                   </button>
@@ -276,11 +305,11 @@
               <!-- Fila 3: Calibre -->
               <div class="config-editorial-row">
                 <div class="config-label-col section-copy">03 / CALIBRE</div>
-                <div class="config-options-col">
-                  <button type="button" class="arch-chip active" data-group="size" data-value="Standard (48mm)">
+                <div class="config-options-col" role="radiogroup" aria-label="Calibre">
+                  <button type="button" class="arch-chip active" role="radio" aria-checked="true" data-group="size" data-value="Standard (48mm)">
                     <span class="chip-text section-copy">Standard (48mm)</span>
                   </button>
-                  <button type="button" class="arch-chip" data-group="size" data-value="Large (52mm)">
+                  <button type="button" class="arch-chip" role="radio" aria-checked="false" data-group="size" data-value="Large (52mm)">
                     <span class="chip-text section-copy">Large (52mm)</span>
                   </button>
                 </div>
@@ -393,28 +422,29 @@
       </div>
     </section>
 
-    <!-- 6. SECCIÓN CIERRE / FOOTER NEGRO DE LA WEB -->
-    <footer class="section-fusion-closing" aria-label="Cierre y Footer Lucent">
-      <div class="site-container reveal">
-        <div class="fusion-content">
-          <span class="section-copy label-tag">LUCENT EYEWEAR 2026</span>
-          <h2 class="section-title fusion-title">
-            La experiencia fótica<br><em>definitiva</em>.
-          </h2>
-          <p class="section-copy fusion-copy">
-            Diseñadas en Suiza. Montura artesanal dorada y cristales ámbar de precisión óptica creados para perdurar.
-          </p>
-          <div class="fusion-footer-links section-copy">
-            <span>SERIE 01 / EDICIÓN LIMITADA</span>
-            <span aria-hidden="true">•</span>
-            <span>LUCENT.OPTICS</span>
-            <span aria-hidden="true">•</span>
-            <a href="#hero">VOLVER ARRIBA ↑</a>
-          </div>
+  </main>
+
+  <!-- 6. SECCIÓN CIERRE / FOOTER NEGRO DE LA WEB -->
+  <footer class="section-fusion-closing" aria-label="Cierre y Footer Lucent">
+    <div class="site-container reveal">
+      <div class="fusion-content">
+        <span class="section-copy label-tag">LUCENT EYEWEAR 2026</span>
+        <h2 class="section-title fusion-title">
+          La experiencia fótica<br><em>definitiva</em>.
+        </h2>
+        <p class="section-copy fusion-copy">
+          Diseñadas en Suiza. Montura artesanal dorada y cristales ámbar de precisión óptica creados para perdurar.
+        </p>
+        <div class="fusion-footer-links section-copy">
+          <span>SERIE 01 / EDICIÓN LIMITADA</span>
+          <span aria-hidden="true">•</span>
+          <span>LUCENT.OPTICS</span>
+          <span aria-hidden="true">•</span>
+          <a href="#hero">VOLVER ARRIBA ↑</a>
         </div>
       </div>
-    </footer>
-  </main>
+    </div>
+  </footer>
 
   <script type="module" src="/src/js/main.js"></script>
 </body>
