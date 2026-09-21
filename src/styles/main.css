@@ -322,31 +322,21 @@ body.nav-locked {
   );
 }
 
-/* Halo en el tono papel de la marca, ceñido al contorno de cada letra. Es lo que
-   devuelve el contraste donde el texto se cruza con las zonas oscuras de la foto
-   —el pelo y las gafas— y por eso el velo de arriba puede quedarse tan bajo.
-
-   El titular lleva un halo ancho y suave: con un trazo de 70 px la sombra cubre
-   de sobra y un radio corto se vería como contorno recortado. */
+/* Halo suave y difuminado en el tono papel de la marca para garantizar legibilidad
+   sin generar bordes ni contornos marcados sobre las letras. */
 .hero-title {
   text-shadow:
-    0 0 4px rgba(244, 240, 231, 0.95),
-    0 0 12px rgba(244, 240, 231, 0.9),
-    0 0 28px rgba(244, 240, 231, 0.7);
+    0 0 24px rgba(244, 240, 231, 0.75),
+    0 0 55px rgba(244, 240, 231, 0.6),
+    0 0 90px rgba(244, 240, 231, 0.4);
 }
 
-/* El texto pequeño necesita lo contrario: con un trazo de 2 px un desenfoque
-   ancho apenas deja tono bajo la letra (medido: 0,29 de cobertura). Las dos
-   primeras capas, muy ceñidas, la suben a 0,70; a este tamaño no se leen como
-   contorno. */
 .hero-text-block .label-tag,
 .hero-copy {
   text-shadow:
-    0 0 1.5px rgba(244, 240, 231, 1),
-    0 0 3px rgba(244, 240, 231, 1),
-    0 0 8px rgba(244, 240, 231, 0.95),
-    0 0 20px rgba(244, 240, 231, 0.8),
-    0 0 36px rgba(244, 240, 231, 0.55);
+    0 0 16px rgba(244, 240, 231, 0.75),
+    0 0 36px rgba(244, 240, 231, 0.55),
+    0 0 64px rgba(244, 240, 231, 0.35);
 }
 
 .hero-content-wrapper {
@@ -358,6 +348,22 @@ body.nav-locked {
 .hero-text-block {
   position: relative;
   z-index: 2;
+}
+
+/* Resplandor ambiental orgánico y difuminado detrás del bloque de texto */
+.hero-text-block::before {
+  content: '';
+  position: absolute;
+  inset: -40px -50px;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    rgba(244, 240, 231, 0.55) 0%,
+    rgba(244, 240, 231, 0.25) 45%,
+    rgba(244, 240, 231, 0) 75%
+  );
+  filter: blur(30px);
+  pointer-events: none;
 }
 
 .hero-title {
